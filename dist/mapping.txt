@@ -1,0 +1,14 @@
+OC 0 1 2 3 4 5 6 7 8 9
+DU W H Q I S X O w h q i s x o
+C C c V v \ :
+C# Y y ? $ % < >
+D D d J j ( )
+Eb U u L l -
+E E e R r _ ^
+F F f Z z = [ ]
+F# K k ! ~ + { }
+G G g t T & '
+G# N M n m /
+A A a @ # "
+Bb P p , ;
+B B b . * |
