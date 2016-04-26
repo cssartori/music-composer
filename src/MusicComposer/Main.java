@@ -10,45 +10,40 @@ import javax.sound.midi.*;
 
 /**
  *
- * @author Hyago
+ * @author cssartori
  */
 public class Main {
 
     public static void main(String[] args) {
 
-        /*
-         * Inicialmente verifica se há algum driver de som instalado no sistema
-         */
+        /*First, check if there is any sound driver installed on the system*/
         try {
             MidiSystem.getSequencer();
         } catch (Exception e) {
-            /*Se não houver nenhum driver instalado, exibe uma mensagem informando ao usuário*/
+            /*If there is no driver, warn the user of the problem with a error message*/
             InfoMessages.noMidiDriverErrorMsg(null);
         }
 
-         /*
-         * Verifica se o arquivo de mapeamento existe e se é possível ler dele
-         * o mapa de caracteres para cada nota
-         */
+         /*Checks if the mapping-keys file exists and if it is possible to read from it the character for each note*/
         if (!MusicalNotes.setMappingFromFile()) {
-            /*Se não existir, informa ao usuário e pergunta se ele deseja criar o arquivo*/
+            /*If the mapping file does not exist, ask if the user wants to create the file*/
             int returnOption = InfoMessages.fileDoesntExistErrorMsg(null, MusicalNotes.MAPPING_FILE_NAME);
             if ((returnOption == JOptionPane.NO_OPTION)
                     || (returnOption == JOptionPane.CLOSED_OPTION)) {
-                /*Se a opção escolhida for 'não' ou 'fechar', encerra o programa*/
+                /*if the option is no, or if the user closed the dialog, end the program (there must be a mapping file)*/
                 System.exit(0);
             } else {
-                /*Caso contrário, cria o arquivo no computador e seta o mapeamento corretamente*/
+                /*If the answer is yes, creates the mapping file and reads the notes from it*/
                 MusicalNotes.createMapFile();
                 MusicalNotes.setMappingFromFile();
             }
         }
 
-        /*Inicializa e cria o mapa de notas*/
+        /*Initializes the in-memory map, adding notes to it*/
         MusicalMap.initializeMap();
         MusicalMap.AddNotesToMap();
 
-        /*Cria a janela principal do programa*/
+        /*Creates program's main window and shows it to the user*/
         MainWindow m = new MainWindow();
         m.setName(MainWindow.MAINWINDOW_TITLE);
         m.setTitle(MainWindow.MAINWINDOW_TITLE);
