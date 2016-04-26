@@ -29,7 +29,8 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         /*Initializes basic components*/
         initComponents();
-
+        initComponentsText();
+        
         /*Make flat buttons*/
         saveBtn.setContentAreaFilled(false);
         openBtn.setContentAreaFilled(false);
@@ -44,12 +45,68 @@ public class MainWindow extends javax.swing.JFrame {
         speedTextField.setText(EMPTY_STRING + speedScroll.getValue());
         setFileNameLabel();
     }
+    
+    private void initComponentsText(){
+        advancedModeRBtn.setText(Texts.ADVANCED_MODE_TEXT);
+        advancedModeRBtn.setToolTipText(Texts.ADVANCED_MODE_TIP);
+        
+        beginnerModeRBtn.setText(Texts.BEGGINERS_MODE_TEXT);
+        beginnerModeRBtn.setToolTipText(Texts.BEGGINERS_MODE_TIP);
+        
+        saveBtn.setToolTipText(Texts.SAVE_TIP);
+        openBtn.setToolTipText(Texts.OPEN_FILE_TIP);
+        
+        modeLabel.setText(Texts.MODE_TEXT);
 
+        instrumentCombo.setMaximumRowCount(9);
+        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(Texts.INSTRUMENT_OPTIONS_LIST));
+        instrumentCombo.setSelectedIndex(3);
+        instrumentCombo.setToolTipText(Texts.INSTRUMENT_OPTIONS_TIP);
+        instrumentLabel.setLabelFor(instrumentCombo);
+        instrumentLabel.setText(Texts.INSTRUMENT_OPTIONS_TEXT);
+        instrumentLabel.setToolTipText(Texts.INSTRUMENT_OPTIONS_TIP);
+        
+        playBtn.setText(Texts.PLAY_BTN_TEXT);
+        playBtn.setToolTipText(Texts.PLAY_BTN_TIP);
+        
+        speedScroll.setToolTipText(Texts.SPEED_TIP);
+        speedTextField.setToolTipText(Texts.SPEED_TIP);
+        speedMusicLabel.setText(Texts.SPEED_TEXT);
+        speedMusicLabel.setToolTipText(Texts.SPEED_TIP);
+
+        bpmLabel.setToolTipText(Texts.SPEED_TIP);
+
+        stopBtn.setText(Texts.STOP_BTN_TEXT);
+        stopBtn.setToolTipText(Texts.STOP_BTN_TIP);
+        
+        fileMenu.setText(Texts.FILE_MENU_TEXT);
+
+        openMenuBtn.setText(Texts.OPEN_FILE_TEXT);
+        
+        saveMenuBtn.setText(Texts.SAVE_AS_MENU_TEXT);
+
+        exitMenuBtn.setText(Texts.EXIT_BTN_TEXT);
+        
+        optionsMenu.setText(Texts.OPEN_FILE_TEXT);
+
+        createMappingFileBtn.setText(Texts.CREATE_MAPPING_FILE_TEXT);
+
+        clearTextAreaMenuBtn.setText(Texts.CLEAR_TEXT_AREA_TEXT);
+        
+        commandMenu.setText(Texts.COMMAND_MENU_TEXT);
+
+        instructionsMenuBtn.setText(Texts.INSTRUCTIONS_MENU_TEXT);
+        
+        examplesMenu.setText(Texts.EXAMPLES_MENU_TEXT);
+        beethovenExampleMenuBtn.setText(Texts.BEETHOVEN_EXAMPLE_TEXT);
+        chordsExampleMenuBtn.setText(Texts.CHORD_EXAMPLE_TEXT);
+        canonExampleMenuBtn.setText(Texts.CANON_EXAMPLE_TEXT);
+    }
+    
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        /**
-        * Method created by Netbeans
-        */
+
         modeGroup = new javax.swing.ButtonGroup();
         advancedModeRBtn = new javax.swing.JRadioButton();
         beginnerModeRBtn = new javax.swing.JRadioButton();
@@ -89,17 +146,27 @@ public class MainWindow extends javax.swing.JFrame {
         setResizable(false);
 
         advancedModeRBtn.setText("Advanced Mode");
-        advancedModeRBtn.setToolTipText("Requires a specific notation to play notes.");
+        advancedModeRBtn.setToolTipText("Exige uma notação específica para tocar as músicas");
+        advancedModeRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advancedModeRBtnActionPerformed(evt);
+            }
+        });
 
-        beginnerModeRBtn.setText("Begginers Mode");
-        beginnerModeRBtn.setToolTipText("Allows free text, without any special notation.");
+        beginnerModeRBtn.setText("Begginer's Mode");
+        beginnerModeRBtn.setToolTipText("Permite texto livre, sem formatação especial.");
+        beginnerModeRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beginnerModeRBtnActionPerformed(evt);
+            }
+        });
 
         textArea.setColumns(20);
         textArea.setRows(5);
         jScrollPane1.setViewportView(textArea);
 
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_2.png"))); // NOI18N
-        saveBtn.setToolTipText("Saves the text in a text file (.txt)");
+        saveBtn.setToolTipText("Salva o texto em um arquivo texto (.txt)");
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveBtn.setFocusPainted(false);
         saveBtn.setOpaque(false);
@@ -110,38 +177,38 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open_2.png"))); // NOI18N
-        openBtn.setToolTipText("Opens a text file (.txt)");
+        openBtn.setToolTipText("Abre um arquivo texto (.txt)");
         openBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 openBtnMouseClicked(evt);
             }
         });
 
-        modeLabel.setText("Execution mode:");
+        modeLabel.setText("Execution Mode:");
 
         instrumentCombo.setMaximumRowCount(9);
-        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinet", "Flute", "Harmonica", "Piano", "Electronic Piano", "Trumpet", "Guitar", "Violin", "Cello" }));
+        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinete", "Flauta", "Gaita de Boca", "Piano", "Piano Eletrônico", "Trompete", "Violão", "Violino", "Violoncelo" }));
         instrumentCombo.setSelectedIndex(3);
-        instrumentCombo.setToolTipText("Selects the instrument which will play the music");
+        instrumentCombo.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
 
         instrumentLabel.setLabelFor(instrumentCombo);
-        instrumentLabel.setText("Instrument:");
-        instrumentLabel.setToolTipText("Selects the instrument which will play the music");
+        instrumentLabel.setText("Instruments:");
+        instrumentLabel.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
 
         playBtn.setText("Play Music");
-        playBtn.setToolTipText("Plays the input music");
+        playBtn.setToolTipText("Toca a música de entrada.");
         playBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playBtnMouseClicked(evt);
             }
         });
 
-        textAreaLabel.setText("Music as text:");
-        textAreaLabel.setToolTipText("Enter a music in text form");
+        textAreaLabel.setText("Music as Text:");
+        textAreaLabel.setToolTipText("Entrada de música em forma de texto");
 
         speedScroll.setMaximum(220);
         speedScroll.setMinimum(40);
-        speedScroll.setToolTipText("How fast the music is played in Beats per Minute");
+        speedScroll.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
         speedScroll.setValue(120);
         speedScroll.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -150,7 +217,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         speedTextField.setText("220");
-        speedTextField.setToolTipText("How fast the music is played in Beats per Minute");
+        speedTextField.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
         speedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 speedTextFieldFocusLost(evt);
@@ -158,20 +225,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         speedMusicLabel.setText("Speed:");
-        speedMusicLabel.setToolTipText("How fast the music is played in Beats per Minute");
+        speedMusicLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
 
         bpmLabel.setText("BPM");
-        bpmLabel.setToolTipText("How fast the music is played in Beats per Minute");
+        bpmLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
 
         stopBtn.setText("Stop Music");
-        stopBtn.setToolTipText("Stops the music");
+        stopBtn.setToolTipText("Pausa a música de entrada.");
         stopBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 stopBtnMousePressed(evt);
             }
         });
-
-        fileNameLabel.setText("Execution mode:");
 
         fileMenu.setText("File");
 
@@ -271,39 +336,42 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(textAreaLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileNameLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(instrumentLabel)
+                            .addComponent(instrumentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(speedScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(speedMusicLabel)
+                                .addGap(4, 4, 4)
+                                .addComponent(speedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(bpmLabel)))
+                        .addGap(156, 156, 156)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(modeLabel)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(openBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(advancedModeRBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(beginnerModeRBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(stopBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(instrumentLabel)
-                                    .addComponent(instrumentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(speedScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(speedMusicLabel)
-                                        .addGap(4, 4, 4)
-                                        .addComponent(speedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(16, 16, 16)
-                                        .addComponent(bpmLabel)))
-                                .addGap(115, 115, 115)))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(stopBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(openBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(modeLabel)
-                            .addComponent(playBtn)
-                            .addComponent(advancedModeRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beginnerModeRBtn))))
-                .addContainerGap(27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textAreaLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fileNameLabel))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,10 +388,10 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(saveBtn)
                             .addComponent(openBtn))
                         .addGap(74, 74, 74)
-                        .addComponent(modeLabel)
+                        .addComponent(modeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(advancedModeRBtn)
-                        .addGap(4, 4, 4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(beginnerModeRBtn)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +416,7 @@ public class MainWindow extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleName("MainFrame");
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
         
     /*Saves the input text as text*/
     private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
@@ -635,6 +703,14 @@ public class MainWindow extends javax.swing.JFrame {
         instrumentCombo.setSelectedIndex(3);
         speedScroll.setValue(100);
     }//GEN-LAST:event_canonExampleMenuBtnMousePressed
+
+    private void advancedModeRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advancedModeRBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_advancedModeRBtnActionPerformed
+
+    private void beginnerModeRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginnerModeRBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_beginnerModeRBtnActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
