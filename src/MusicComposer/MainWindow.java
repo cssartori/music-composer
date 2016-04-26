@@ -1,14 +1,13 @@
-package MusicComposer;
-
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package MusicComposer;
 
-/*
- * MainWindow.java
- *
- * Created on 02/06/2014, 19:31:19
+/**
+ * MainWindow of the program
+ * @author cssartori
  */
 import javax.sound.midi.MidiSystem;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -17,42 +16,40 @@ import org.jfugue.Instrument;
 import javax.sound.midi.*;
 
 public class MainWindow extends javax.swing.JFrame {
-
-    /*Arquivo texto aberto no momento*/
+    /*File opened at the moment*/
     private TextFile currentFile = new TextFile(null);
-    /*Thread para tocar a música em paralelo ao uso da interface do programa*/
+    /*Thread to play the music letting the main window free to be used (specifically, the pause button)*/
     private MusicalThread mThread;
     
-    /*
-     * Algumas Strings para uso na Janela Principal
-     */
+    /*Strings to be used on the Main Window*/
     public static final String MAINWINDOW_TITLE = "Music Composer";
     private final String EMPTY_STRING = "";
 
-    /**
-     * Inicializa a janela principal
-     */
+    /*Constructor*/
     public MainWindow() {
+        /*Initializes basic components*/
         initComponents();
 
-        /*Faz botões serem flat*/
+        /*Make flat buttons*/
         saveBtn.setContentAreaFilled(false);
         openBtn.setContentAreaFilled(false);
 
-        /*Adiciona os dois RadioButtons de modos a um grupo de exclusão mútua*/
+        /*Adds the radio buttons to control the mode inside a exclusive option group*/
         modeGroup.add(advancedModeRBtn);
         modeGroup.add(beginnerModeRBtn);
 
-        /*Seta o RadioButton de iniciante como o selecionado inicialmente*/
+        /*Sets the Begginer's radio button as selected*/
         beginnerModeRBtn.setSelected(true);
+        /*Sets the speed field*/
         speedTextField.setText(EMPTY_STRING + speedScroll.getValue());
         setFileNameLabel();
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        /**
+        * Method created by Netbeans
+        */
         modeGroup = new javax.swing.ButtonGroup();
         advancedModeRBtn = new javax.swing.JRadioButton();
         beginnerModeRBtn = new javax.swing.JRadioButton();
@@ -91,18 +88,18 @@ public class MainWindow extends javax.swing.JFrame {
         setName("MainFrame"); // NOI18N
         setResizable(false);
 
-        advancedModeRBtn.setText("Modo Avançado");
-        advancedModeRBtn.setToolTipText("Exige uma notação específica para tocar as músicas");
+        advancedModeRBtn.setText("Advanced Mode");
+        advancedModeRBtn.setToolTipText("Requires a specific notation to play notes.");
 
-        beginnerModeRBtn.setText("Modo Iniciante");
-        beginnerModeRBtn.setToolTipText("Permite texto livre, sem formatação especial.");
+        beginnerModeRBtn.setText("Begginers Mode");
+        beginnerModeRBtn.setToolTipText("Allows free text, without any special notation.");
 
         textArea.setColumns(20);
         textArea.setRows(5);
         jScrollPane1.setViewportView(textArea);
 
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_2.png"))); // NOI18N
-        saveBtn.setToolTipText("Salva o texto em um arquivo texto (.txt)");
+        saveBtn.setToolTipText("Saves the text in a text file (.txt)");
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveBtn.setFocusPainted(false);
         saveBtn.setOpaque(false);
@@ -113,38 +110,38 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open_2.png"))); // NOI18N
-        openBtn.setToolTipText("Abre um arquivo texto (.txt)");
+        openBtn.setToolTipText("Opens a text file (.txt)");
         openBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 openBtnMouseClicked(evt);
             }
         });
 
-        modeLabel.setText("Modo de Execução:");
+        modeLabel.setText("Execution mode:");
 
         instrumentCombo.setMaximumRowCount(9);
-        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinete", "Flauta", "Gaita de Boca", "Piano", "Piano Eletrônico", "Trompete", "Violão", "Violino", "Violoncelo" }));
+        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinet", "Flute", "Harmonica", "Piano", "Electronic Piano", "Trumpet", "Guitar", "Violin", "Cello" }));
         instrumentCombo.setSelectedIndex(3);
-        instrumentCombo.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
+        instrumentCombo.setToolTipText("Selects the instrument which will play the music");
 
         instrumentLabel.setLabelFor(instrumentCombo);
-        instrumentLabel.setText("Instrumento:");
-        instrumentLabel.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
+        instrumentLabel.setText("Instrument:");
+        instrumentLabel.setToolTipText("Selects the instrument which will play the music");
 
-        playBtn.setText("Tocar Música");
-        playBtn.setToolTipText("Toca a música de entrada.");
+        playBtn.setText("Play Music");
+        playBtn.setToolTipText("Plays the input music");
         playBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playBtnMouseClicked(evt);
             }
         });
 
-        textAreaLabel.setText("Música em texto:");
-        textAreaLabel.setToolTipText("Entrada de música em forma de texto");
+        textAreaLabel.setText("Music as text:");
+        textAreaLabel.setToolTipText("Enter a music in text form");
 
         speedScroll.setMaximum(220);
         speedScroll.setMinimum(40);
-        speedScroll.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedScroll.setToolTipText("How fast the music is played in Beats per Minute");
         speedScroll.setValue(120);
         speedScroll.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -153,32 +150,32 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         speedTextField.setText("220");
-        speedTextField.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedTextField.setToolTipText("How fast the music is played in Beats per Minute");
         speedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 speedTextFieldFocusLost(evt);
             }
         });
 
-        speedMusicLabel.setText("Velocidade:");
-        speedMusicLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedMusicLabel.setText("Speed:");
+        speedMusicLabel.setToolTipText("How fast the music is played in Beats per Minute");
 
         bpmLabel.setText("BPM");
-        bpmLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        bpmLabel.setToolTipText("How fast the music is played in Beats per Minute");
 
-        stopBtn.setText("Parar Música");
-        stopBtn.setToolTipText("Pausa a música de entrada.");
+        stopBtn.setText("Stop Music");
+        stopBtn.setToolTipText("Stops the music");
         stopBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 stopBtnMousePressed(evt);
             }
         });
 
-        fileNameLabel.setText("Modo de Execução:");
+        fileNameLabel.setText("Execution mode:");
 
-        fileMenu.setText("Arquivo");
+        fileMenu.setText("File");
 
-        openMenuBtn.setText("Abrir Arquivo");
+        openMenuBtn.setText("Open File");
         openMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 openMenuBtnMousePressed(evt);
@@ -186,7 +183,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         fileMenu.add(openMenuBtn);
 
-        saveMenuBtn.setText("Salvar Como...");
+        saveMenuBtn.setText("Save as...");
         saveMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 saveMenuBtnMousePressed(evt);
@@ -194,7 +191,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         fileMenu.add(saveMenuBtn);
 
-        exitMenuBtn.setText("Sair");
+        exitMenuBtn.setText("Exit");
         exitMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exitMenuBtnMousePressed(evt);
@@ -204,9 +201,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
-        optionsMenu.setText("Opções");
+        optionsMenu.setText("Options");
 
-        createMappingFileBtn.setText("Criar Arquivo de Mapeamento");
+        createMappingFileBtn.setText("Create Mapping-Key File");
         createMappingFileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 createMappingFileBtnMousePressed(evt);
@@ -214,7 +211,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         optionsMenu.add(createMappingFileBtn);
 
-        clearTextAreaMenuBtn.setText("Limpar Caixa de Texto");
+        clearTextAreaMenuBtn.setText("Clear Text Box");
         clearTextAreaMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 clearTextAreaMenuBtnMousePressed(evt);
@@ -224,9 +221,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(optionsMenu);
 
-        commandMenu.setText("Comandos");
+        commandMenu.setText("Commands");
 
-        instructionsMenuBtn.setText("Instruções");
+        instructionsMenuBtn.setText("Instructions");
         instructionsMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 instructionsMenuBtnMousePressed(evt);
@@ -234,9 +231,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
         commandMenu.add(instructionsMenuBtn);
 
-        examplesMenu.setText("Exemplos");
+        examplesMenu.setText("Examples");
 
-        beethovenExampleMenuBtn.setText("Início de \"Für Elise\" (Beethoven)");
+        beethovenExampleMenuBtn.setText("Beggining of \"Für Elise\" (Beethoven)");
         beethovenExampleMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 beethovenExampleMenuBtnMousePressed(evt);
@@ -244,7 +241,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         examplesMenu.add(beethovenExampleMenuBtn);
 
-        chordsExampleMenuBtn.setText("Cordas Simples");
+        chordsExampleMenuBtn.setText("Simple Chordes");
         chordsExampleMenuBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 chordsExampleMenuBtnMousePressed(evt);
@@ -351,143 +348,150 @@ public class MainWindow extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleName("MainFrame");
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
+    }
+        
+    /*Saves the input text as text*/
     private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
         JFileChooser saveFileDialog = new JFileChooser();
         String textToWrite = textArea.getText();
 
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos texto (*.txt)", "txt", "texto");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files (*.txt)", "txt", "text");
         saveFileDialog.setFileFilter(filter);
 
         if (!(currentFile.isOpened())) {
-            /*Se não houver um arquivo aberto, pede para o usuário selecionar um arquivo*/
-
+            /*If there is no file currently selected, ask the user to select one*/
             int openingReturn = saveFileDialog.showSaveDialog(this);
-
+            /*Checks user response*/
             if (openingReturn == JFileChooser.APPROVE_OPTION) {
-                /*Se o arquivo escolhido abrir com sucesso, escreve nele*/
+                /*If the file opened with success, write in it*/
                 currentFile = new TextFile(saveFileDialog.getSelectedFile());
-
                 currentFile.setTextExtension();
             } else if (openingReturn == JFileChooser.CANCEL_OPTION) {
-                /*Caso o usuário tenha cancelado a escolha de arquivo, apenas retorna*/
+                /*If the user canceled the file selection, just return*/
                 return;
             } else {
-                /*Qualquer outro caso é definido como erro na abertura*/
+                /*Any other case is considered an error in the opening of the file*/
                 InfoMessages.fileOpeningErrorMsg(this);
                 return;
             }
         }
 
-        /*Com um arquivo já aberto, tenta escrever nele*/
+        /*Here it is guaranteed that the file is opened*/
         try {
+            /*try to write in the file*/
             currentFile.WriteFile(textToWrite);
         } catch (Exception e) {
+            /*In case any error occurred during writing, notify the user*/
             InfoMessages.fileWrittingErrorMsg(this);
+            /*and close the current file*/
             currentFile.CloseFile();
             return;
         }
-        /*Se chegou ao final da função, a mensagem apresentada é de que houve sucesso salvando o arquivo*/
+        /*If the program reached this line, everything went fine and we can notify the success writing the file*/
         InfoMessages.fileSavingSuccessMsg(this, currentFile.getFileName());
         setFileNameLabel();
     }//GEN-LAST:event_saveBtnMouseClicked
-
+    
+    /*Opens a text file*/
     private void openBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openBtnMouseClicked
-
+        /*Chooser to select a file*/
         JFileChooser openFileDialog = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos texto (*.txt)", "txt", "texto");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text File (*.txt)", "txt", "text");
 
         openFileDialog.setFileFilter(filter);
-        /*Pede para o usuário selecionar o arquivo que quer abrir*/
+        /*Ask the user to select a file to open*/
         int openingReturn = openFileDialog.showOpenDialog(this);
 
         if (openingReturn == JFileChooser.APPROVE_OPTION) {
-            /*Se houve sucesso ao abrir o arquivo, lê dele*/
+            /*If the file was successfully opened, read from it*/
             currentFile.setFile(openFileDialog.getSelectedFile().getPath());
 
             try {
+                /*Try to read from the file*/
                 String textRead = currentFile.ReadFile();
+                /*Write the text read in the text box*/
                 textArea.setText(textRead);
             } catch (Exception e) {
+                /*In case any error occurred during file reading*/
                 InfoMessages.fileReadingErrorMsg(this, currentFile.getFileName());
                 return;
             }
 
         } else if (openingReturn == JFileChooser.CANCEL_OPTION) {
-            /*Caso o usuário tenha cancelado a escolha de arquivo, apenas retorna*/
+            /*If the user canceled the file selection, just return*/
             return;
         } else {
-            /*Qualquer outro caso é definido como erro na abertura*/
+            /*Any other error is considered a error opening the file */
             InfoMessages.fileOpeningErrorMsg(this);
         }
         setFileNameLabel();
     }//GEN-LAST:event_openBtnMouseClicked
 
+    /*Play button actions*/
     private void playBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playBtnMouseClicked
         if (!(playBtn.isEnabled())) {
-            /*Se o botão de play não estiver habilitado, não deve fazer nada*/
+            /*If the play button is not enabled shouldn't do anything*/
             return;
         }
 
-        /*Verifica a existência de um driver no sistema*/
+        /*Checks if the system has a sound driver*/
         try {
             MidiSystem.getSequencer();
         } catch (Exception e) {
-            /*Se não houver driver, emite uma mensagem de erro e não continua a operação*/
+            /*If there is no sound driver, notify the user and stop the operation (it is impossible to play music without the driver)*/
             InfoMessages.noMidiDriverErrorMsg(this);
             return;
         }
         
+        /*Creates a new music based on the input text*/
         Music inputMusic = new Music();
-
         inputMusic = prepareMusic(inputMusic);
-
+        
+        /*If the music was successfully prepared, play it*/
         if (inputMusic != null) {
             playMusic(inputMusic);
         }
 
     }//GEN-LAST:event_playBtnMouseClicked
-
+        
+    /*Prepare a music based on the input text*/
     private Music prepareMusic(Music inputMusic) {
-
+        /*Sets the music "melody" as the input text*/
         inputMusic.setMelody(textArea.getText());
-
+        
+        /*If the input text is empty, its an error*/
         if (inputMusic.getMelody().isEmpty()) {
+            /*Notify the user and stop operations*/
             InfoMessages.noInputErrorMsg(this);
             return null;
         }
 
-        /*seta o instrumento da música de acordo com a opção selecionada no comboBox de instrumentos*/
+        /*sets the music instrument according to the one selected by the user*/
         inputMusic.setInstrument(getInstrumentIndex(instrumentCombo.getSelectedIndex()));
-        /*seta a velocidade da música de acordo com o valor na barra de velocidade*/
+        /*sets the music speed according to the one selected by the user*/
         inputMusic.setSpeed(speedScroll.getValue());
 
         if (beginnerModeRBtn.isSelected()) {
-            /*Se for modo iniciante, deve analisar e tratar a entrada para transformá-la em algo válido para a JFugue*/
+            /*If the begginners mode was selected, must parse the input and make it something playable by the JFugue lib*/
             inputMusic.parse();
-        }
-
+        } /*As for the advanced mode, it is already in the JFugue standard*/
+        
         inputMusic.setMelodyInstrument();
         inputMusic.setMelodySpeed();
         System.out.println(inputMusic.getMelody());
-
+        /*Returns the music prepared*/
         return inputMusic;
     }
-
+        
+    /*Playes a given music*/    
     private void playMusic(Music inputMusic) {
-        /*Cria uma nova Thread onde a música irá tocar, permitindo que o restante da interface continue
-        funcionando ao mesmo tempo*/
-      
+        /*Creates a new thread to play the music, allowing the GUI to keep working while the music is played*/
         mThread = (new MusicalThread(inputMusic, this.playBtn, this));
         mThread.start();
-
     }
-
+    
+    /*Returns the code of the JFugue instrument according to what was selected in the comboBox of instruments*/
     private static int getInstrumentIndex(int comboBoxIndex) {
-        /*Devolve o código do instrumento da JFugue de acordo com o índice referido
-        Por default é PIANO
-         */
         switch (comboBoxIndex) {
             case 0:
                 return Instrument.CLARINET;
@@ -507,89 +511,85 @@ public class MainWindow extends javax.swing.JFrame {
                 return Instrument.VIOLIN;
             case 8:
                 return Instrument.CELLO;
-            default:
+            default: //Piano is the default instrument
                 return Instrument.PIANO;
         }
     }
 
+    /*Sets the filename label as the currently selected file' name*/
     private void setFileNameLabel() {
         String setName = currentFile.getFileName();
         setName = "<html> <i>" + setName;
         fileNameLabel.setText(setName);
     }
+    
     private void openMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openMenuBtnMousePressed
         openBtnMouseClicked(evt);
     }//GEN-LAST:event_openMenuBtnMousePressed
-
+    
+    /*Save as... option*/
     private void saveMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMenuBtnMousePressed
-        /*Opção Salvar como...*/
-        /*Armazena a referência do arquivo atual*/
+        /*Stores the current file reference*/
         TextFile temp = currentFile;
-        /*Fecha o arquivo atual*/
+        /*closes the current file*/
         currentFile.CloseFile();
-        /*Chama função para salvar em arquivo texto*/
+        /*calls the method to save in file*/
         saveBtnMouseClicked(evt);
-        if (currentFile.isOpened()) /*Se o usuário escolheu um arquivo, apenas retorna*/ {
+        if (currentFile.isOpened()) /*If the user selected a file, just return*/ {
             return;
-        } else /*Se houve erro ao abrir o arquivo selecionado, ou o usuário cancelou a escolha de arquivo
-        retorna a referência inicial do arquivo para o arquivo atual
-         */ {
-            currentFile = temp;
+        } else{
+            /*TODO: Must PRINT some error message and reopen the last current file*/
         }
     }//GEN-LAST:event_saveMenuBtnMousePressed
-
+    
+    /*Exit Button*/
     private void exitMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuBtnMousePressed
-        /*Botão de saída*/
         System.exit(0);
     }//GEN-LAST:event_exitMenuBtnMousePressed
-
+    
+    /*Create the Mapping-Key file*/
     private void createMappingFileBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createMappingFileBtnMousePressed
         if (MusicalNotes.createMapFile()) {
-            /* Se o arquivo foi criado com sucesso*/
+            /* If the file was successfully created*/
         } else {
-            /*Se houve erro na criação do arquivo*/
+            /*If there was an error creating the file*/
             InfoMessages.fileCreationErrorMsg(this, MusicalNotes.MAPPING_FILE_NAME);
         }
     }//GEN-LAST:event_createMappingFileBtnMousePressed
 
     private void clearTextAreaMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTextAreaMenuBtnMousePressed
-        /*Limpa a área de texto de entrada, preenchendo com uma String vazia*/
+        /*Clears the input text box, filling it with an empty string*/
         textArea.setText(EMPTY_STRING);
     }//GEN-LAST:event_clearTextAreaMenuBtnMousePressed
 
     private void speedScrollStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_speedScrollStateChanged
-        /*Modifica o campo de texto da velocidade quando o Scroll é modificado*/
+        /*Modifies the text field when the speed scroll is modified*/
         speedTextField.setText(EMPTY_STRING + speedScroll.getValue());
-
 
         MidiChannel channel=null;
         try{
+            /*Open Synthesizer channel to modify its speed*/
             Synthesizer synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();
             MidiChannel[] channels = synthesizer.getChannels();
             channels[0].controlChange(7, 0);
-	
         }
-        catch(Exception e){
-            System.out.println("ERROU!\n");
-        }
-
-
+        catch(Exception e){ }
     }//GEN-LAST:event_speedScrollStateChanged
 
     private void speedTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_speedTextFieldFocusLost
-        /*Modifica o valor do Scroll quando o campo de texto da velocidade é modificado*/
-        String tempo = speedTextField.getText();
-
+        /*Modifies the speed scroll value when the speed text field value is changed*/
+        String temp = speedTextField.getText();
         int musicBPM;
 
         try {
-            musicBPM = Integer.parseInt(tempo);
+            /*Try to parse the value read*/
+            musicBPM = Integer.parseInt(temp);
         } catch (NumberFormatException e) {
             musicBPM = Music.DEFAULT_SPEED;
         }
 
-        /*Verifica se está fora dos limites máximo ou mínimo da velocidade*/
+        /*Verify if the value read is inside the boundaries*/
         if (musicBPM < Music.MIN_SPEED) {
             musicBPM = Music.MIN_SPEED;
         } else if (musicBPM > Music.MAX_SPEED) {
@@ -599,23 +599,25 @@ public class MainWindow extends javax.swing.JFrame {
         speedTextField.setText(EMPTY_STRING + musicBPM);
         speedScroll.setValue(musicBPM);
     }//GEN-LAST:event_speedTextFieldFocusLost
-
+        
+    /*Button to stop the music*/    
     private void stopBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopBtnMousePressed
-        /*Botão de parada da música*/
         if (mThread != null) {
+            /*Interrupt the thread playing the music*/
             mThread.interrupt();
         }
+        /*Reactivates the Play Music button*/
         playBtn.setEnabled(true);
     }//GEN-LAST:event_stopBtnMousePressed
 
+    /*Presents the instructions window*/
     private void instructionsMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_instructionsMenuBtnMousePressed
-        /*Apresenta a janela de instruções*/
         InstructionWindow iw = new InstructionWindow(this);
         iw.setVisible(true);
     }//GEN-LAST:event_instructionsMenuBtnMousePressed
 
     private void beethovenExampleMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beethovenExampleMenuBtnMousePressed
-        /*Exemplo com os primeiros momentos de Für Elise de Beethoven no modo avançado*/
+        /*Example with the first moments of Beethoven's Für Elise, in advanced mode */
         textArea.setText(MusicExamples.getBeethovenExample());
         advancedModeRBtn.setSelected(true);
         speedScroll.setValue(50);
@@ -633,9 +635,8 @@ public class MainWindow extends javax.swing.JFrame {
         instrumentCombo.setSelectedIndex(3);
         speedScroll.setValue(100);
     }//GEN-LAST:event_canonExampleMenuBtnMousePressed
-    /**
-     * @param args the command line arguments
-     */
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton advancedModeRBtn;
     private javax.swing.JMenuItem beethovenExampleMenuBtn;
