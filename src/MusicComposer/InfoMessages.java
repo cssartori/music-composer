@@ -14,38 +14,48 @@ import java.awt.Component;
  */
 public class InfoMessages {
     
-    /*
-     *              TÍTULOS DOS ERROS:
-     */
-    private final static String FILE_TITLE = "Arquivo!";
-    private final static String NO_INPUT_ERROR_TITLE = "Sem Entrada!";
-    private final static String FILE_ERROR_TITLE = "Erro com arquivo!";
-    private final static String MIDI_ERROR_TITLE = "Erro no driver!";
-    private final static String DESKTOP_ERROR_TITLE = "Erro com sistema!";
-    private final static String INPUT_ERROR_TITLE = "Erro na Entrada!";
-    private final static String UNKNOWN_ERROR_TITLE = "Erro desconhecido!";
+    /* ERRORS' TITLES*/
+    private final static String FILE_TITLE = "File!";
+    private final static String NO_INPUT_ERROR_TITLE = "No Input!";
+    private final static String FILE_ERROR_TITLE = "File Error!";
+    private final static String MIDI_ERROR_TITLE = "Sound Driver Error!";
+    private final static String DESKTOP_ERROR_TITLE = "System Error!";
+    private final static String INPUT_ERROR_TITLE = "Input Error!";
+    private final static String UNKNOWN_ERROR_TITLE = "Unknown Error!";
 
-    /*
-     *              MENSAGENS DE ERROS:
-     */
-    private final static String OPENING_ERROR_MSG = "Ocorreu um erro ao abrir o arquivo selecionado. Nada foi feito.\nPor favor, tente novamente.";
-    private final static String SAVING_SUCCESS_MSG = "<html>O arquivo &nbsp;<i>FILENAME</i>&nbsp; foi salvo com sucesso!";
-    private final static String FILE_CREATION_ERROR_MSG = "<html> Erro na criação do arquivo: &nbsp; &nbsp; <i>FILENAME</i> \nNada foi feito.\n\nVerifique se não existe nenhum arquivo de mesmo nome na pasta.";
-    private final static String NO_INPUT_ERROR_MSG = "Nenhuma entrada foi fornecida.\nPor favor, insira uma entrada no campo de texto e então pressione 'Tocar Músca'.";
-    private final static String FILE_DOESNT_EXISTS_ERROR_MSG = "<html> O seguinte Arquivo não existe: &nbsp; &nbsp; <i>FILENAME</i>\n\nCriar o Arquivo?";
-    private final static String FILE_READING_ERROR_MSG = "<html>Ocorreu um erro durante a leitura no arquivo: &nbsp; &nbsp;<i>FILENAME</i>\nA operação foi abortada e nada foi feito.\n";
-    private final static String FILE_WRITTING_ERROR_MSG = "Ocorreu um erro durante a escrita em arquivo.\nA operação foi abortada e nada foi feito.\n";
-    private final static String NO_MIDI_DRIVER_ERROR_MSG = "Não há nenhum driver de som instalado no sistema.\n\nVerifique a instalação e funcionamento dos drivers do computador.\n";
-    private final static String INCORRECT_INPUT_MUSIC_ERROR_MSG = "O texto de entrada fornecido contém erros.\n Por favor, verifique novamente a entrada e tente novamente.";
-    private final static String DESKTOP_NOT_SUPPORTED_ERROR_MSG = "<html> O comando de <i>Desktop</i> exigido não é suportado. \nVerifique o sistema e o seu <i>browser</i>.";
-    private final static String NO_URL_ERROR_MSG = "<html>Nenhum <i>link</i> foi encontrado. Verifique o suporte a URL's.";
-    private final static String NO_BROWSER_SUPPORT_ERROR_MSG = "<html> O <i>browser</i> padrão do computador não oferece suporte para a ação de abrir a URL solicitada.";
-    private final static String INPUT_ERROR_MSG = "A entrada contém um erro. Verifique a sintaxe e tente novamente.\n";
-    private final static String UNKNOWN_ERROR_MSG = "Um erro desconhecido ocorreu e o programa não pode tratá-lo.\nNada foi feito.\nPor favor, tente novamente. Se o problema persistir, tente fechar e abrir o programa novamente.";
+    /* ERRORS' MESSAGES */
+    private final static String OPENING_ERROR_MSG = "An error is preventing the selected file to be opened. \n"+
+                                                    "Nothing was done.\n"+
+                                                    "Please, try again.";                                                   
+    private final static String SAVING_SUCCESS_MSG = "<html>The file &nbsp;<i>FILENAME</i>&nbsp; was saved successfuly!";
+    private final static String FILE_CREATION_ERROR_MSG = "<html> Error creating file: &nbsp; &nbsp; <i>FILENAME</i> \n"+
+                                                          "Nothing was done.\n"+
+                                                          "Please, check if there is no other file with the same name in the folder.";
+    private final static String NO_INPUT_ERROR_MSG = "No input given.\n"+
+                                                     "Please, write an input in the text box and then press 'Play Music'.";
+    private final static String FILE_DOESNT_EXISTS_ERROR_MSG = "<html> The following file does not exist: &nbsp; &nbsp; <i>FILENAME</i>\n"+
+                                                               "Create new file?";
+    private final static String FILE_READING_ERROR_MSG = "<html>An error occurred when reading the file: &nbsp; &nbsp;<i>FILENAME</i>\n"+
+                                                         "The operation was aborted and nothing done.";
+    private final static String FILE_WRITTING_ERROR_MSG = "An error occurred when writing to file.\n"+
+                                                          "The operation was aborted and nothing done.";
+    private final static String NO_MIDI_DRIVER_ERROR_MSG = "There is no sound driver installed on the system.\n"+
+                                                           "Check installation and correct behaviour of sound driver.";
+    private final static String INCORRECT_INPUT_MUSIC_ERROR_MSG = "The input text contains errors.\n"+
+                                                                  "Please, look for the errors and try again.";
+    private final static String DESKTOP_NOT_SUPPORTED_ERROR_MSG = "<html> The <i>Desktop</i> command required is not supported. \n"+
+                                                                  "Check the system and your <i>web browser</i>.";
+    private final static String NO_URL_ERROR_MSG = "<html>No <i>link</i> was found. Check the support to URL's.";
+    private final static String NO_BROWSER_SUPPORT_ERROR_MSG = "<html> The computer's default <i>web browser</i> can't open the selected URL";
+    private final static String INPUT_ERROR_MSG = "The input text contains an error. Check syntax and try again.";
+    private final static String UNKNOWN_ERROR_MSG = "An unknown error has occurred and the program can't handle it.\n"+
+                                                    "Nothing was done.\n"+
+                                                    "Please, try again. If the error persists, try closing and opening the program.";
 
-    /*String usada para substituir FILENAME pelo respectivo nome de arquivo que se quer usar nas mensagens de erro*/
+    /*String used as "placeholder" for the filename that should be inserted. It is used for replacing this string with the correct file name*/
     private final static String FILENAME_REPLACER = "FILENAME";
     
+    /*The methods below make the pop-up of a specific message with its specific text and title*/
     public static void fileOpeningErrorMsg(Component parent){
         InfoMessages.setParentDisabled(parent); 
         JOptionPane.showMessageDialog(parent, OPENING_ERROR_MSG, FILE_ERROR_TITLE, JOptionPane.ERROR_MESSAGE );
@@ -131,9 +141,7 @@ public class InfoMessages {
         InfoMessages.setParentEnabled(parent);
     }
     
-    /*
-     * Funções internas para impedir que se use a janela principal enquanto uma janela de erro está sendo exibida
-     */
+    /*Private method to prevent the main window of being used while an information message is shown*/
     private static void setParentDisabled(Component parent){
         if(parent!=null)
             parent.setEnabled(false);
