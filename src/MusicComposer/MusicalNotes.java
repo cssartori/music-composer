@@ -8,15 +8,12 @@ package MusicComposer;
 import java.util.*;
 
 /**
- *
- * @author Hyago
+ * Class that holds the notes and the mapping-key file.
+ * @author cssartori
  */
 public class MusicalNotes {
 
-    /*
-     *                      NOTAS:
-     * Constantes com a representação de cada nota básica
-     */
+    /* NOTES: Constants with the representation of each basic JFugue Note*/
     public static final String C_NOTE = "C";
     public static final String CSharp_NOTE = "C#";
     public static final String D_NOTE = "D";
@@ -32,38 +29,36 @@ public class MusicalNotes {
     public static final String PAUSE_NOTE = " ";
 
 
-    /*
-     * Constantes para uso no arquivo texto de mapeamento
-     */
+    /*Constants for usage in the mapping-key file*/
     public static final String MAPPING_FILE_NAME = "mapping.txt";
     private static final String OCTAVE = "OC";
-    private static final String DURACTION = "DU";
+    private static final String DURATION = "DU";
     private static final String NEW_LINE = "\n";
-    private static final String DEFAULT_MAPPING = "OC 0 1 2 3 4 5 6 7 8 9\n"
-            + "DU W H Q I S X O w h q i s x o\n"
-            + "C C c V v \\ :\n"
-            + "C# Y y ? $ % < >\n"
-            + "D D d J j ( )\n"
-            + "Eb U u L l -\n"
-            + "E E e R r _ ^\n"
-            + "F F f Z z = [ ]\n"
-            + "F# K k ! ~ + { }\n"
-            + "G G g t T & '\n"
-            + "G# N M n m /\n"
-            + "A A a @ # \"\n"
-            + "Bb P p , ;\n"
-            + "B B b . * |\n";
+    
+    private static final String DEFAULT_MAPPING = 
+            OCTAVE + " 0 1 2 3 4 5 6 7 8 9\n"
+            + DURATION + " W H Q I S X O w h q i s x o\n"
+            + C_NOTE + " C c V v \\ :\n"
+            + CSharp_NOTE + " Y y ? $ % < >\n"
+            + D_NOTE + " D d J j ( )\n"
+            + Eb_NOTE + " U u L l -\n"
+            + E_NOTE + " E e R r _ ^\n"
+            + F_NOTE + " F f Z z = [ ]\n"
+            + FSharp_NOTE + " K k ! ~ + { }\n"
+            + G_NOTE + " G g t T & '\n"
+            + GSharp_NOTE + " N M n m /\n"
+            + A_NOTE + " A a @ # \"\n"
+            + Bb_NOTE + " P p , ;\n"
+            + B_NOTE + " B b . * |\n";
 
 
-    /*
-     *              Vetores de mapeamento de cada NOTA
-     */
-
-    /*Vetores das oitavas e durações*/
+    
+    /*Below are the arrays with the mapping of each note read from the mapping-key file*/    
+    /*Arrays for the octaves and durations*/
     private static List<Character> OCTAVES = new ArrayList<>();
     private static List<Character> DURATIONS = new ArrayList<>();
 
-    /*Vetores de cada uma das 12 notas*/
+    /*Arrays for each of the twelve notes available*/
     private static List<Character> CNotes = new ArrayList<>();
     private static List<Character> CSharpNotes = new ArrayList<>();
     private static List<Character> DNotes = new ArrayList<>();
@@ -133,6 +128,7 @@ public class MusicalNotes {
         return DURATIONS;
     }
 
+    /*Reads the mapping-key file and fills the arrays with the mapping for each note*/
     public static boolean setMappingFromFile() {
 
         TextFile mappingFile = new TextFile(null);
@@ -156,7 +152,7 @@ public class MusicalNotes {
                         OCTAVES.add(oneNoteMap[j].charAt(0));
                     }
                     break;
-                case DURACTION:
+                case DURATION:
                     for (int j = 1; j < oneNoteMap.length; j++) {
                         DURATIONS.add(oneNoteMap[j].charAt(0));
                     }
@@ -233,7 +229,8 @@ public class MusicalNotes {
 
         return true;
     }
-
+    
+    /*Creates the default mapping-key file*/
     public static boolean createMapFile() {
         String basicMapping = DEFAULT_MAPPING;
         TextFile mapFile = new TextFile(null);

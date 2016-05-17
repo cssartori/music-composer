@@ -6,8 +6,8 @@
 package MusicComposer;
 
 /**
- *
- * @author root
+ * Class that holds basic texts used by the program.
+ * @author cssartori
  */
 public class Texts {
     public static final String PLAY_BTN_TEXT = "Play Music";

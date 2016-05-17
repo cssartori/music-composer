@@ -3,23 +3,24 @@ package MusicComposer;
 import org.jfugue.Player;
 import org.jfugue.JFugueException;
 
+/**
+ * Class that represents a music inside the program.
+ * @author cssartori
+ */
 public class Music{
-
+    
+    /*String to hold the sequence of music notes to be played*/
     private static String melody;
-    public static final int MAX_SPEED = 220;
-    public static final int MIN_SPEED = 40;
-    public static final int DEFAULT_SPEED = 120;
     private final Player musicPlayer = new Player();
     private int instrument;
     private int speed;
-
-    Music() {
-
-        instrument = 0;
-        speed = 120;
-        melody = new String();
-    }
-
+  
+    Music(String melody) {
+        this.instrument = Constants.DEFAULT_INSTRUMENT_INDEX;
+        this.speed = Constants.MUSIC_DEFAULT_SPEED;
+        this.melody = melody;
+    }      
+    
     public void setMelody(String input) {
         melody = input;
     }
@@ -45,10 +46,11 @@ public class Music{
     }
 
     public void parse(){
-        melody = InputParser.Parse(melody);
+        melody = InputParser.parse(melody);
     }
 
     public void play() throws JFugueException {
+        /*It is necessary to add "V[0]" to the beginning of the music*/
         setMelody("V[0] "+getMelody());
         try {
            musicPlayer.play(melody);
@@ -62,11 +64,13 @@ public class Music{
     }
 
     public void setMelodyInstrument(){
+        /*To identify the instrument, it is necessary to add "I" and the instrument index at the beggining*/
         String instStr = "I" + instrument + MusicalNotes.PAUSE_NOTE;
         melody = instStr.concat(melody);
     }
 
     public void setMelodySpeed(){
+         /*To identify the speed, it is necessary to add "T" and the speed at the beggining*/
         String spdStr = "T" + speed + MusicalNotes.PAUSE_NOTE;
         melody = spdStr.concat(melody);
     }

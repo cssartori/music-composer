@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.Component;
 
 /**
- *
+ * Class that holds basic information messages.
  * @author cssartori
  */
 public class InfoMessages {
@@ -51,7 +51,9 @@ public class InfoMessages {
     private final static String UNKNOWN_ERROR_MSG = "An unknown error has occurred and the program can't handle it.\n"+
                                                     "Nothing was done.\n"+
                                                     "Please, try again. If the error persists, try closing and opening the program.";
-
+    
+    
+    
     /*String used as "placeholder" for the filename that should be inserted. It is used for replacing this string with the correct file name*/
     private final static String FILENAME_REPLACER = "FILENAME";
     

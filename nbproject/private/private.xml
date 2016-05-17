@@ -4,9 +4,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/carlo/musiccomposer/src/MusicComposer/InstructionWindow.java</file>
-            <file>file:/home/carlo/musiccomposer/src/MusicComposer/MainWindow.java</file>
-            <file>file:/home/carlo/musiccomposer/src/MusicComposer/Texts.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/MainWindow.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/Constants.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/InfoMessages.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/Main.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/TextFile.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/Texts.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/InstructionWindow.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/Music.java</file>
+            <file>file:/C:/Users/Usuário/Desktop/musiccomposer/src/MusicComposer/MusicalThread.java</file>
         </group>
     </open-files>
 </project-private>

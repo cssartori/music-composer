@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.File;
 
 /**
- *
- * @author Usuário
+ * 
+ * @author cssartori
  */
 public class TextFile {
     

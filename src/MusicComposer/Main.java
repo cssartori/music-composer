@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.sound.midi.*;
 
 /**
- *
+ * Main method to initiate the program.
  * @author cssartori
  */
 public class Main {
@@ -41,7 +41,7 @@ public class Main {
 
         /*Initializes the in-memory map, adding notes to it*/
         MusicalMap.initializeMap();
-        MusicalMap.AddNotesToMap();
+        MusicalMap.addNotesToMap();
 
         /*Creates program's main window and shows it to the user*/
         MainWindow m = new MainWindow();

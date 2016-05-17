@@ -5,12 +5,13 @@
 package MusicComposer;
 
 /**
- *
- * @author Usuário
+ * Class that holds the text of all music examples available in the program.
+ * @author cssartori
  */
 public class MusicExamples {
 
     private static final String FUR_BEETHOVEN_EXAMPLE = "V0 E5s D#5s | E5s D#5s E5s B4s D5s C5s V1 Ri | Riii";
+    
     private static final String CHORDS_EXAMPLE = "T[Vivace] I[Rock_Organ] Db4minH C5majW C4maj^^";
 
     private static final String CANON_EXAMPLE = "D6q C6q B5q A5q\n"

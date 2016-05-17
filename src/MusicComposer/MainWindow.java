@@ -6,7 +6,7 @@
 package MusicComposer;
 
 /**
- * MainWindow of the program
+ * MainWindow of the program.
  * @author cssartori
  */
 import javax.sound.midi.MidiSystem;
@@ -60,7 +60,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         instrumentCombo.setMaximumRowCount(9);
         instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(Texts.INSTRUMENT_OPTIONS_LIST));
-        instrumentCombo.setSelectedIndex(3);
+        instrumentCombo.setSelectedIndex(Constants.DEFAULT_INSTRUMENT_INDEX);
         instrumentCombo.setToolTipText(Texts.INSTRUMENT_OPTIONS_TIP);
         instrumentLabel.setLabelFor(instrumentCombo);
         instrumentLabel.setText(Texts.INSTRUMENT_OPTIONS_TEXT);
@@ -146,7 +146,7 @@ public class MainWindow extends javax.swing.JFrame {
         setResizable(false);
 
         advancedModeRBtn.setText("Advanced Mode");
-        advancedModeRBtn.setToolTipText("Exige uma notação específica para tocar as músicas");
+        advancedModeRBtn.setToolTipText("");
         advancedModeRBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 advancedModeRBtnActionPerformed(evt);
@@ -154,7 +154,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         beginnerModeRBtn.setText("Begginer's Mode");
-        beginnerModeRBtn.setToolTipText("Permite texto livre, sem formatação especial.");
+        beginnerModeRBtn.setToolTipText("");
         beginnerModeRBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beginnerModeRBtnActionPerformed(evt);
@@ -166,7 +166,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textArea);
 
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_2.png"))); // NOI18N
-        saveBtn.setToolTipText("Salva o texto em um arquivo texto (.txt)");
+        saveBtn.setToolTipText("");
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveBtn.setFocusPainted(false);
         saveBtn.setOpaque(false);
@@ -177,7 +177,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open_2.png"))); // NOI18N
-        openBtn.setToolTipText("Abre um arquivo texto (.txt)");
+        openBtn.setToolTipText("");
         openBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 openBtnMouseClicked(evt);
@@ -187,16 +187,21 @@ public class MainWindow extends javax.swing.JFrame {
         modeLabel.setText("Execution Mode:");
 
         instrumentCombo.setMaximumRowCount(9);
-        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinete", "Flauta", "Gaita de Boca", "Piano", "Piano Eletrônico", "Trompete", "Violão", "Violino", "Violoncelo" }));
+        instrumentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clarinet", "Flute", "Harmonica", "Piano", "Electronic Piano", "Trumpet", "Guitar", "Violin", "Cello" }));
         instrumentCombo.setSelectedIndex(3);
-        instrumentCombo.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
+        instrumentCombo.setToolTipText("");
+        instrumentCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instrumentComboActionPerformed(evt);
+            }
+        });
 
         instrumentLabel.setLabelFor(instrumentCombo);
         instrumentLabel.setText("Instruments:");
-        instrumentLabel.setToolTipText("Seleciona o instrumento que tocará a música de entrada.");
+        instrumentLabel.setToolTipText("");
 
         playBtn.setText("Play Music");
-        playBtn.setToolTipText("Toca a música de entrada.");
+        playBtn.setToolTipText("");
         playBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playBtnMouseClicked(evt);
@@ -204,11 +209,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         textAreaLabel.setText("Music as Text:");
-        textAreaLabel.setToolTipText("Entrada de música em forma de texto");
+        textAreaLabel.setToolTipText("");
 
         speedScroll.setMaximum(220);
         speedScroll.setMinimum(40);
-        speedScroll.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedScroll.setToolTipText("");
         speedScroll.setValue(120);
         speedScroll.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -217,7 +222,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         speedTextField.setText("220");
-        speedTextField.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedTextField.setToolTipText("");
         speedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 speedTextFieldFocusLost(evt);
@@ -225,13 +230,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         speedMusicLabel.setText("Speed:");
-        speedMusicLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        speedMusicLabel.setToolTipText("");
 
         bpmLabel.setText("BPM");
-        bpmLabel.setToolTipText("Indica quão rápido a música será tocada em Beats per Minute");
+        bpmLabel.setToolTipText("");
 
         stopBtn.setText("Stop Music");
-        stopBtn.setToolTipText("Pausa a música de entrada.");
+        stopBtn.setToolTipText("");
         stopBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 stopBtnMousePressed(evt);
@@ -501,7 +506,6 @@ public class MainWindow extends javax.swing.JFrame {
             /*If the play button is not enabled shouldn't do anything*/
             return;
         }
-
         /*Checks if the system has a sound driver*/
         try {
             MidiSystem.getSequencer();
@@ -512,30 +516,29 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         /*Creates a new music based on the input text*/
-        Music inputMusic = new Music();
-        inputMusic = prepareMusic(inputMusic);
+        Music inputMusic = prepareMusic();
         
         /*If the music was successfully prepared, play it*/
         if (inputMusic != null) {
             playMusic(inputMusic);
         }
-
     }//GEN-LAST:event_playBtnMouseClicked
         
     /*Prepare a music based on the input text*/
-    private Music prepareMusic(Music inputMusic) {
-        /*Sets the music "melody" as the input text*/
-        inputMusic.setMelody(textArea.getText());
-        
+    private Music prepareMusic() {          
         /*If the input text is empty, its an error*/
-        if (inputMusic.getMelody().isEmpty()) {
+        if (textArea.getText().isEmpty()) {
             /*Notify the user and stop operations*/
             InfoMessages.noInputErrorMsg(this);
             return null;
         }
-
+        
+        /*Creates the music objetc*/
+        Music inputMusic = new Music(textArea.getText());
+                
         /*sets the music instrument according to the one selected by the user*/
         inputMusic.setInstrument(getInstrumentIndex(instrumentCombo.getSelectedIndex()));
+        
         /*sets the music speed according to the one selected by the user*/
         inputMusic.setSpeed(speedScroll.getValue());
 
@@ -546,7 +549,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         inputMusic.setMelodyInstrument();
         inputMusic.setMelodySpeed();
-        System.out.println(inputMusic.getMelody());
+
         /*Returns the music prepared*/
         return inputMusic;
     }
@@ -654,14 +657,14 @@ public class MainWindow extends javax.swing.JFrame {
             /*Try to parse the value read*/
             musicBPM = Integer.parseInt(temp);
         } catch (NumberFormatException e) {
-            musicBPM = Music.DEFAULT_SPEED;
+            musicBPM = Constants.MUSIC_DEFAULT_SPEED;
         }
 
         /*Verify if the value read is inside the boundaries*/
-        if (musicBPM < Music.MIN_SPEED) {
-            musicBPM = Music.MIN_SPEED;
-        } else if (musicBPM > Music.MAX_SPEED) {
-            musicBPM = Music.MAX_SPEED;
+        if (musicBPM < Constants.MUSIC_MIN_SPEED) {
+            musicBPM = Constants.MUSIC_MIN_SPEED;
+        } else if (musicBPM > Constants.MUSIC_MAX_SPEED) {
+            musicBPM = Constants.MUSIC_MAX_SPEED;
         }
 
         speedTextField.setText(EMPTY_STRING + musicBPM);
@@ -711,6 +714,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void beginnerModeRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginnerModeRBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_beginnerModeRBtnActionPerformed
+
+    private void instrumentComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instrumentComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instrumentComboActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

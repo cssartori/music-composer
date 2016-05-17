@@ -2,9 +2,15 @@ package MusicComposer;
 
 import java.util.*;
 
+/**
+ * Class that holds the parser of begginer's inputs. It transforms a free formated text into a 
+ * valid music so that JFugue can play it. In order to do that, it makes use of the mapping-key file.
+ * @author cssartori
+ */
 public class InputParser {
-
-    public static String Parse(String NotesToParse) {
+    
+    /*Parses a string and returns a JFugue playable music based on the MusicalMap used*/
+    public static String parse(String NotesToParse) {
         List<String> MapOfNotes = (MusicalMap.getMap());
 
         String ParsedNotes = MusicalNotes.PAUSE_NOTE;
@@ -15,7 +21,7 @@ public class InputParser {
                 ParsedNotes = ParsedNotes.concat(MusicalNotes.PAUSE_NOTE);
             } else {
                 if (isOctaveChar(NotesToParse.charAt(i))
-                        || isDuractionChar(NotesToParse.charAt(i))) {
+                        || isDurationChar(NotesToParse.charAt(i))) {
                     ParsedNotes += MapOfNotes.get(NotesToParse.charAt(i));
                     if (!(isLastChar(i, NotesToParse))
                             && (isOctaveChar(NotesToParse.charAt(i + 1)))) {
@@ -49,7 +55,7 @@ public class InputParser {
         }
     }
 
-    private static boolean isDuractionChar(char checkChar) {
+    private static boolean isDurationChar(char checkChar) {
         if ((Character.isAlphabetic(checkChar))
                 && (MusicalNotes.getDuractions().contains(checkChar))) {
             return true;
@@ -69,7 +75,7 @@ public class InputParser {
     private static boolean isPauseNote(char checkChar) {
         String temp = Character.toString(checkChar);
 
-        if (temp == MusicalNotes.PAUSE_NOTE) {
+        if (temp.equals(MusicalNotes.PAUSE_NOTE)) {
             return true;
         } else {
             return false;
