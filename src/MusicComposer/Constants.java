@@ -18,4 +18,13 @@ public class Constants {
     /*Instruments related constants*/
     public static final int DEFAULT_INSTRUMENT_INDEX = 3;
     
+    /*Text related constants*/
+    public static final String NEW_LINE = "\n";
+    public static final String EMPTY_STRING = "";
+    
+    /*Test related constants*/
+    public static final boolean SUCCESS = true;
+    public static final boolean FAILURE = false;
+
+    
 }

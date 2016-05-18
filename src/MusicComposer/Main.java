@@ -45,8 +45,8 @@ public class Main {
 
         /*Creates program's main window and shows it to the user*/
         MainWindow m = new MainWindow();
-        m.setName(MainWindow.MAINWINDOW_TITLE);
-        m.setTitle(MainWindow.MAINWINDOW_TITLE);
+        m.setName(Texts.MAINWINDOW_TITLE);
+        m.setTitle(Texts.MAINWINDOW_TITLE);
         m.setVisible(true);
 
     }

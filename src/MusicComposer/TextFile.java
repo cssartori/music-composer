@@ -12,20 +12,20 @@ import java.io.IOException;
 import java.io.File;
 
 /**
- * 
+ * Class that encapsulates the basic text file's methods. It represents a text file.
  * @author cssartori
  */
 public class TextFile {
-    
-    
-    public static final String NEW_LINE = "\n";
-    private static final String EMPTY_STRING = "";
-    public static final boolean SUCCESS = true;
-    public static final boolean FAILURE = false;
+        
     public static final String TEXT_FILE_EXTENSION = "txt";
-    /*Armazena a referência ao arquivo atualmente escolhido*/
+    
+    /*Stores the reference to a File*/
     private File chosenFile;
 
+    public TextFile() {
+        chosenFile = null;
+    }
+    
     public TextFile(File file) {
         chosenFile = file;
     }
@@ -52,11 +52,11 @@ public class TextFile {
     
     public String getFileName(){
         if(chosenFile == null)
-            return "";
+            return Constants.EMPTY_STRING;
         return chosenFile.getName();
     }
 
-    public void CloseFile() {
+    public void closeFile() {
         chosenFile = null;
     }
     
@@ -67,16 +67,16 @@ public class TextFile {
             return true;
     }
 
-    public String ReadFile() throws IOException {
+    public String readFile() throws IOException {
 
-        String text = EMPTY_STRING, line;
+        String text = Constants.EMPTY_STRING; 
+        String line;
         BufferedReader fileToRead;
 
         try {
             fileToRead = new BufferedReader(new FileReader(chosenFile));
-            //System.out.println("READING....\n");
             while ((line = fileToRead.readLine()) != null) {
-                text += line + NEW_LINE;
+                text += line + Constants.NEW_LINE;
             }
             fileToRead.close();
         } catch (IOException e) {
@@ -86,14 +86,13 @@ public class TextFile {
         return text;
     }
 
-    public void WriteFile(String textoToWrite) throws IOException {
+    public void writeFile(String textoToWrite) throws IOException {
 
         BufferedWriter fileToWrite;
 
         try {
             fileToWrite = new BufferedWriter(new FileWriter(chosenFile));
-            System.out.println(textoToWrite);
-            String splittedByLines[] = textoToWrite.split(NEW_LINE);
+            String splittedByLines[] = textoToWrite.split(Constants.NEW_LINE);
 
             for(String temp : splittedByLines){
                 fileToWrite.write(temp);
@@ -121,8 +120,7 @@ public class TextFile {
         if(hasTextExtension()){
             return;
         }
-        setFile(getFileName()+"."+TEXT_FILE_EXTENSION);
-                
+        setFile(getFileName()+"."+TEXT_FILE_EXTENSION);       
     }
 
 }

@@ -17,14 +17,10 @@ import javax.sound.midi.*;
 
 public class MainWindow extends javax.swing.JFrame {
     /*File opened at the moment*/
-    private TextFile currentFile = new TextFile(null);
+    private TextFile currentFile = new TextFile();
     /*Thread to play the music letting the main window free to be used (specifically, the pause button)*/
     private MusicalThread mThread;
     
-    /*Strings to be used on the Main Window*/
-    public static final String MAINWINDOW_TITLE = "Music Composer";
-    private final String EMPTY_STRING = "";
-
     /*Constructor*/
     public MainWindow() {
         /*Initializes basic components*/
@@ -42,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
         /*Sets the Begginer's radio button as selected*/
         beginnerModeRBtn.setSelected(true);
         /*Sets the speed field*/
-        speedTextField.setText(EMPTY_STRING + speedScroll.getValue());
+        speedTextField.setText(Constants.EMPTY_STRING + speedScroll.getValue());
         setFileNameLabel();
     }
     
@@ -452,12 +448,12 @@ public class MainWindow extends javax.swing.JFrame {
         /*Here it is guaranteed that the file is opened*/
         try {
             /*try to write in the file*/
-            currentFile.WriteFile(textToWrite);
+            currentFile.writeFile(textToWrite);
         } catch (Exception e) {
             /*In case any error occurred during writing, notify the user*/
             InfoMessages.fileWrittingErrorMsg(this);
             /*and close the current file*/
-            currentFile.CloseFile();
+            currentFile.closeFile();
             return;
         }
         /*If the program reached this line, everything went fine and we can notify the success writing the file*/
@@ -481,7 +477,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             try {
                 /*Try to read from the file*/
-                String textRead = currentFile.ReadFile();
+                String textRead = currentFile.readFile();
                 /*Write the text read in the text box*/
                 textArea.setText(textRead);
             } catch (Exception e) {
@@ -600,17 +596,21 @@ public class MainWindow extends javax.swing.JFrame {
     
     /*Save as... option*/
     private void saveMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMenuBtnMousePressed
-        /*Stores the current file reference*/
-        TextFile temp = currentFile;
-        /*closes the current file*/
-        currentFile.CloseFile();
+        String filename = null;
+        if(currentFile.isOpened()){ /*If there is a file opened*/
+            filename = currentFile.getFileName(); /*Store the old file name in case we need to reopen it*/
+            currentFile.closeFile();
+        }
         /*calls the method to save in file*/
         saveBtnMouseClicked(evt);
-        if (currentFile.isOpened()) /*If the user selected a file, just return*/ {
+        
+        if (currentFile.isOpened()){ /*If the user selected a file, just return*/
             return;
-        } else{
-            /*TODO: Must PRINT some error message and reopen the last current file*/
+        } else{ /*The user just canceled the operation without saving, must reopen the old file*/
+            if(filename != null) /*If before there was any file opened*/
+                currentFile.setFile(filename);
         }
+        
     }//GEN-LAST:event_saveMenuBtnMousePressed
     
     /*Exit Button*/
@@ -630,12 +630,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void clearTextAreaMenuBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTextAreaMenuBtnMousePressed
         /*Clears the input text box, filling it with an empty string*/
-        textArea.setText(EMPTY_STRING);
+        textArea.setText(Constants.EMPTY_STRING);
     }//GEN-LAST:event_clearTextAreaMenuBtnMousePressed
 
     private void speedScrollStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_speedScrollStateChanged
         /*Modifies the text field when the speed scroll is modified*/
-        speedTextField.setText(EMPTY_STRING + speedScroll.getValue());
+        speedTextField.setText(Constants.EMPTY_STRING + speedScroll.getValue());
 
         MidiChannel channel=null;
         try{
@@ -667,7 +667,7 @@ public class MainWindow extends javax.swing.JFrame {
             musicBPM = Constants.MUSIC_MAX_SPEED;
         }
 
-        speedTextField.setText(EMPTY_STRING + musicBPM);
+        speedTextField.setText(Constants.EMPTY_STRING + musicBPM);
         speedScroll.setValue(musicBPM);
     }//GEN-LAST:event_speedTextFieldFocusLost
         

@@ -8,30 +8,31 @@ import org.jfugue.JFugueException;
  * @author cssartori
  */
 public class MusicalThread extends Thread{
+    /*The music object reference*/
     private Music music;
-    private Component button;
+    /*The reference to the button responsible for the "play" action*/
+    private Component playButton;
+    /*Reference to the parent window of this thread (in this particular case, it is the MainWindow)*/
     private Component parent;
     
-    public MusicalThread(Music music, Component button, Component parent){
+    public MusicalThread(Music music, Component playButton, Component parent){
         this.music=music;
-        this.button=button;
+        this.playButton=playButton;
         this.parent=parent;
     }
 
     @Override
     public void run(){
-
-        button.setEnabled(false);
-        
+        playButton.setEnabled(false);        
         try{
           music.play();
         }catch(Exception e){
             if(!e.getMessage().equals(JFugueException.ERROR_SLEEP))
                 InfoMessages.inputErrorMsg(parent);
             music.pause();
-            button.setEnabled(true);    
+            playButton.setEnabled(true);    
         }
-        button.setEnabled(true);
+        playButton.setEnabled(true);
     }
 
 

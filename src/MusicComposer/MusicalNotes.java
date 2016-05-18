@@ -28,12 +28,10 @@ public class MusicalNotes {
     public static final String B_NOTE = "B";
     public static final String PAUSE_NOTE = " ";
 
-
     /*Constants for usage in the mapping-key file*/
     public static final String MAPPING_FILE_NAME = "mapping.txt";
     private static final String OCTAVE = "OC";
     private static final String DURATION = "DU";
-    private static final String NEW_LINE = "\n";
     
     private static final String DEFAULT_MAPPING = 
             OCTAVE + " 0 1 2 3 4 5 6 7 8 9\n"
@@ -137,12 +135,12 @@ public class MusicalNotes {
         String mappingFileOutput;
 
         try {
-            mappingFileOutput = mappingFile.ReadFile();
+            mappingFileOutput = mappingFile.readFile();
         } catch (Exception e) {
             return false;
         }
 
-        String allNotesList[] = mappingFileOutput.split(NEW_LINE);
+        String allNotesList[] = mappingFileOutput.split(Constants.NEW_LINE);
 
         for (int i = 0; i < allNotesList.length; i++) {
             String oneNoteMap[] = allNotesList[i].split(PAUSE_NOTE);
@@ -219,7 +217,7 @@ public class MusicalNotes {
                     }
                     break;
                 case PAUSE_NOTE:
-                case NEW_LINE:
+                case Constants.NEW_LINE:
                     continue;
 
                 default:
@@ -233,12 +231,12 @@ public class MusicalNotes {
     /*Creates the default mapping-key file*/
     public static boolean createMapFile() {
         String basicMapping = DEFAULT_MAPPING;
-        TextFile mapFile = new TextFile(null);
+        TextFile mapFile = new TextFile();
         mapFile.setFile(MAPPING_FILE_NAME);
 
         if (mapFile.createTextFile()) {
             try {
-                mapFile.WriteFile(basicMapping);
+                mapFile.writeFile(basicMapping);
             } catch (Exception e) {
                 return false;
             }

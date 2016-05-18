@@ -5,12 +5,6 @@ import javax.swing.JDialog;
 
 public class InstructionWindow extends javax.swing.JDialog {
 
-    /*
-     * Strings Constantes contendo os textos sobre cada modo e o texto da "home" de instruções
-     */
-    private final String homeInfoText = "<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\" align=\"center\">\r\n      \r\t<u><b>Instruções: </u></b>\n    </p>\r\n<p style=\"margin-top: 0\" align=\"justify\"><body style= \"font-family:\"MS Shell Dlg 2\"> <br></br>\n\t      \n&nbsp;&nbsp;&nbsp;&nbsp;O <i>Music Composer</i> permite que músicas sejam criadas utilizando como forma de notação a escrita comum, com caracteres encontrados no teclado. O programa cria uma implementação e interface para a biblioteca <i>JFugue</i>, utilizada como base para o funcionamento do todo.\n<br></br>&nbsp;&nbsp;&nbsp;&nbsp;Contando com dois modos, o <i>Iniciante</i> e o <i>Avançado</i>, o programa consegue abrangir diferentes tipo de usuário, com diferentes graus de conhecimento sobre o mundo musical e suas implicações.\n<br></br>&nbsp;&nbsp;&nbsp;&nbsp;Em qualquer um dos modos é possível modificar inicialmente o instrumento que tocará a música, bem como a velocidade com que o som será tocado (dada em <i>beats per minute</i> - BPM).<br></br><br></br>&nbsp;&nbsp;&nbsp;&nbsp;  Para obter mais informações sobre os modos, pressione um dos botões abaixo.\n                     \n</body></p>\n  </body>\r\n</html>\r\n";
-    private final String beginnerInfoText = "<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\" align=\"center\">\r\n      \r\t<u><b>Instruções do modo Iniciante: </u></b>\n    </p>\r\n<p style=\"margin-top: 0\" align=\"justify\"><body style= \"font-family:\"MS Shell Dlg 2\"> <br></br>\n\t      \n<br></br>&nbsp;&nbsp;&nbsp;&nbsp;O <i>Modo Iniciante</i> trata da escrita da música em formato de texto livre, sem estruturação alguma, sem notações específicas ou regras estritas a serem seguidas. Qualquer texto inserido \nno campo de entrada será mapeado para notas musicais de acordo com um mapeamento pré-definido, e então o resultado será tocado ao usuário em forma de som, nota por nota.<br></br>\n\n<br></br> &nbsp;&nbsp;&nbsp;&nbsp;As possibilidades de notas e modificações destas são um pouco limitadas. Ao todo, conta-se com 12 notas ( Dó, Dó#, Ré, Mi, Mib, Fá, Fá#, Sol, Sol#, Lá, Si, Sib). Além delas, é possível fazer uso\nda notação de oitavas (dígitos de 0 a 9) para delimitar a oitava de uma dada nota. Por fim, alguns caracteres são específicos para determinar qual o período de toque de uma certa nota.\n<br></br><br></br> <ul><u> Mapeamento básico (não faz distinção entre maiusculas e minusculas):</u></ul>\n<ul>Oitavas: &nbsp;&nbsp;1, 2, 3, 4, 5, 6, 7, 8, 9, 0<br></br>\n        Durações: &nbsp;&nbsp;W, H, Q, I, S, X, O<br></br>\n        Nota Dó:&nbsp;&nbsp; C, V, \\, :<br></br>\n        Nota Dó#: &nbsp;&nbsp;Y, ?, $, %, <, ><br></br>\n        Nota Ré: &nbsp;&nbsp;D, J, (, )<br></br>\n        Nota Mi: &nbsp;&nbsp;E, R, _, ^<br></br>\n        Nota Mib: &nbsp;&nbsp;U, L, -<br></br>\n        Nota Fá: &nbsp;&nbsp;F, Z, =, [, ]<br></br>\n        Nota Fá#: &nbsp;&nbsp;K, !, ~, +, {, }<br></br>\n        Nota Sol: &nbsp;&nbsp;G, T, &, '<br></br>\n        Nota Sol#: &nbsp;&nbsp;N, M, /   <br></br>\n        Nota Lá: &nbsp;&nbsp;A, @, #, \" <br></br>\n        Nota Si: &nbsp;&nbsp;P, , , ; <br></br>\n        Nota Sib: &nbsp;&nbsp;B, . , *, | <br></br>\n</ul>\n<p style=\"margin-top: 0\" align=\"justify\"><br></br>&nbsp;&nbsp;&nbsp;&nbsp;É possível modificar este mapeamento básico, bastando abrir o arquivo texto <i>mapping.txt</i> , localizado na mesma pasta do programa e modificar diretamente\nali o que cada caractere do teclado deve representar como nota (note que a separação entre cada caractere é feito por um espaço simples e não por vírgulas como aqui).\n\n</body></p>\n  </body>\r\n</html>\r\n";
-    private final String advancedInfoText = "<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\" align=\"center\">\r\n      \r\t<u><b>Instruções do modo Avançado: </u></b>\n    </p>\r\n<p style=\"margin-top: 0\" align=\"justify\"><body style= \"font-family:\"MS Shell Dlg 2\"> <br></br>\n\t      \n<br></br>&nbsp;&nbsp;&nbsp;&nbsp;O <i>Modo Avançado</i>, diferente do <i>Iniciante</i>, exige que se utilize uma forma de notação específica para a formação de uma música. \nEssa notação é a mesma utilizada na biblioteca de música <i><a href=\"www.jfugue.org/jfugue-chapter2.pdf\">JFugue (link com manual)</i></a>.<br></br>\n\n<br></br> &nbsp;&nbsp;&nbsp;&nbsp;A partir dela é possível fazer uso de todas as notas básicas, com suas respectivas escalas sustenido e bemol. É ainda possível definir as oitavas de cada nota,\nbem como mudanças de instrumentos ao longo da música, notas tocadas em paralelo, mudar a velocidade \"dinamicamente\" entre outros tantos comandos. Porém, para fazer uso de todos estes recursos\ndisponíveis, é preciso que se conheça a fundo a sintaxe e notação da <i>JFugue</i>.\n\n\n</body></p>\n  </body>\r\n</html>\r\n";
     private MainWindow parent;
 
     /**
@@ -110,21 +104,21 @@ public class InstructionWindow extends javax.swing.JDialog {
         beginnerBtn.setEnabled(false);
         advancedBtn.setEnabled(true);
         homeBtn.setEnabled(true);
-        infoTextArea.setText(beginnerInfoText);
+        infoTextArea.setText(Texts.beginnerInfoText);
     }
 
     public void setAdvancedInfoWindow() {
         advancedBtn.setEnabled(false);
         beginnerBtn.setEnabled(true);
         homeBtn.setEnabled(true);
-        infoTextArea.setText(advancedInfoText);
+        infoTextArea.setText(Texts.advancedInfoText);
     }
 
     public void setHomeInfoWindow() {
         advancedBtn.setEnabled(true);
         beginnerBtn.setEnabled(true);
         homeBtn.setEnabled(false);
-        infoTextArea.setText(homeInfoText);
+        infoTextArea.setText(Texts.homeInfoText);
     }
 
     private void infoTextAreaHyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_infoTextAreaHyperlinkUpdate
