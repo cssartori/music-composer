@@ -83,7 +83,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         exitMenuBtn.setText(Texts.EXIT_BTN_TEXT);
         
-        optionsMenu.setText(Texts.OPEN_FILE_TEXT);
+        optionsMenu.setText(Texts.OPTIONS_MENU_TEXT);
 
         createMappingFileBtn.setText(Texts.CREATE_MAPPING_FILE_TEXT);
 

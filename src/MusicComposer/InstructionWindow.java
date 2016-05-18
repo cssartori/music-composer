@@ -7,9 +7,7 @@ public class InstructionWindow extends javax.swing.JDialog {
 
     private MainWindow parent;
 
-    /**
-     * Inicializa a janela de instruções
-     */
+    /* Initializes the instruction window */
     public InstructionWindow(MainWindow p) {
         parent = p;
         initComponents();
