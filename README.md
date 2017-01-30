@@ -1,4 +1,4 @@
-#** Music Composer**  
+# Music Composer  
 This program plays music according to a text received as input. It is coded in Java(7) and uses the [*JFugue*](http://www.jfugue.org/) Library to handle all the work involving sounds and notes. It has a GUI built with SWING.
 ## Modes:
 Basically any text can be played in the two available modes:
